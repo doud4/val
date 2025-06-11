@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nosso Primeiro Dia dos Namorados</title>
   <style>
-    /* Estilo base com inspiração iOS */
     body {
       margin: 0;
       padding: 0;
@@ -15,7 +14,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
       padding: 20px;
     }
@@ -41,7 +39,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .carousel-track {
@@ -60,6 +58,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
+      margin-bottom: 10px;
     }
 
     button {
@@ -72,10 +71,10 @@
       font-size: 0.9em;
     }
 
-    .message {
-      margin-top: 20px;
-      font-size: 1em;
+    .caption {
+      font-size: 0.95em;
       color: #555;
+      margin-bottom: 10px;
     }
 
     .music {
@@ -88,6 +87,15 @@
       height: 80px;
       border-radius: 12px;
     }
+
+    .second-music {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .second-music iframe {
+      height: 60px;
+    }
   </style>
 </head>
 <body>
@@ -99,6 +107,11 @@
         <img src="https://placekitten.com/400/250" alt="Foto 1">
         <img src="https://placekitten.com/401/250" alt="Foto 2">
         <img src="https://placekitten.com/402/250" alt="Foto 3">
+        <img src="https://placekitten.com/403/250" alt="Foto 4">
+        <img src="https://placekitten.com/404/250" alt="Foto 5">
+        <img src="https://placekitten.com/405/250" alt="Foto 6">
+        <img src="https://placekitten.com/406/250" alt="Foto 7">
+        <img src="https://placekitten.com/407/250" alt="Foto 8">
       </div>
     </div>
 
@@ -107,23 +120,49 @@
       <button onclick="nextSlide()">→</button>
     </div>
 
-    <div class="message">
-      Uma lembrança cheia de carinho, só nossa 💖
+    <div class="caption" id="caption">
+      Primeira legenda — nossa primeira memória 💌
     </div>
 
     <div class="music">
-      <!-- Você pode trocar o link pelo embed de Spotify ou YouTube -->
       <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="second-music" id="secondMusic">
+      <p><strong>Uma música especial para este momento:</strong></p>
+      <iframe src="https://open.spotify.com/embed/track/2VxeLyX666F8uXCJ0dZF8B?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
 
   <script>
     const track = document.getElementById('carouselTrack');
+    const caption = document.getElementById('caption');
+    const secondMusic = document.getElementById('secondMusic');
+
     let index = 0;
+
+    const captions = [
+      "Primeira legenda — nossa primeira memória 💌",
+      "Segunda legenda — um olhar que diz tudo ✨",
+      "Terceira legenda — nossos risos preferidos 😄",
+      "Quarta legenda — um abraço que acalma 🤍",
+      "Quinta legenda — entre músicas e silêncios 🎶",
+      "Sexta legenda — só nós dois no mundo 🌎",
+      "Sétima legenda — tudo em você me encanta 💫",
+      "Oitava legenda — e esse momento é só nosso 💖"
+    ];
 
     function updateCarousel() {
       const width = document.querySelector('.carousel').offsetWidth;
       track.style.transform = `translateX(-${index * width}px)`;
+      caption.textContent = captions[index];
+
+      // Mostra a segunda música somente na 8ª imagem
+      if (index === 7) {
+        secondMusic.style.display = "block";
+      } else {
+        secondMusic.style.display = "none";
+      }
     }
 
     function nextSlide() {
