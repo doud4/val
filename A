@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Primeiro Dia dos Namorados</title>
+  <style>
+    /* Estilo base com inspiração iOS */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fdf6f0;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: 1.6em;
+      margin-bottom: 20px;
+      color: #cc6699;
+    }
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      flex-shrink: 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button {
+      background-color: #cc6699;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1em;
+      color: #555;
+    }
+
+    .music {
+      margin-top: 20px;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 80px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nosso Primeiro Dia dos Namorados</h1>
+
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <img src="https://placekitten.com/400/250" alt="Foto 1">
+        <img src="https://placekitten.com/401/250" alt="Foto 2">
+        <img src="https://placekitten.com/402/250" alt="Foto 3">
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button onclick="prevSlide()">←</button>
+      <button onclick="nextSlide()">→</button>
+    </div>
+
+    <div class="message">
+      Uma lembrança cheia de carinho, só nossa 💖
+    </div>
+
+    <div class="music">
+      <!-- Você pode trocar o link pelo embed de Spotify ou YouTube -->
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const track = document.getElementById('carouselTrack');
+    let index = 0;
+
+    function updateCarousel() {
+      const width = document.querySelector('.carousel').offsetWidth;
+      track.style.transform = `translateX(-${index * width}px)`;
+    }
+
+    function nextSlide() {
+      if (index < track.children.length - 1) {
+        index++;
+        updateCarousel();
+      }
+    }
+
+    function prevSlide() {
+      if (index > 0) {
+        index--;
+        updateCarousel();
+      }
+    }
+
+    window.addEventListener('resize', updateCarousel);
+    window.addEventListener('load', updateCarousel);
+  </script>
+</body>
+</html>
